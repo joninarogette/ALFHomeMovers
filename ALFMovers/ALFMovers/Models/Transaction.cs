@@ -24,7 +24,7 @@ namespace ALFMovers.Models
         public Nullable<byte> Status { get; set; }
         public Nullable<decimal> Payment { get; set; }
         public Nullable<int> CustID { get; set; }
-    
+
         public virtual Customer Customer { get; set; }
         public virtual ICollection<TransEmp> TransEmps { get; set; }
         public virtual ICollection<TransTruck> TransTrucks { get; set; }
