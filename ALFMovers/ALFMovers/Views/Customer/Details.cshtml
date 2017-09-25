@@ -1,0 +1,46 @@
+﻿@model ALFMovers.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Customer Details</h3>
+
+                
+            </div>
+            <div class="box-body">
+                <label>Customer Name:</label><br />
+                @Html.DisplayFor(model => model.CustName)<br /><br />
+                <label>Customer:Contact</label><br />
+                @Html.DisplayFor(model => model.CustContact)    <br />      <br />      
+                <label>Address:</label><br />
+                @Html.DisplayFor(model => model.FromAddrss)    <br />   <br />         
+                <label>Destination Address:</label><br />
+                @Html.DisplayFor(model => model.ToAddrss)      <br />  <br />        
+                <label>Issued Date:</label><br />
+                @Html.DisplayFor(model => model.IssuedDate)<br /><br />
+                <label>Scheduled Date:</label><br />
+                @Html.DisplayFor(model => model.SchedDate)<br /><br />
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="pull-right">
+                    <input type="button" value="Schedule" class="btn btn-primary" />
+                    <a href="@Url.Action("List","Customer")" type="button" class="btn btn-primary">Cancel</a>
+                </div>
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+</div>

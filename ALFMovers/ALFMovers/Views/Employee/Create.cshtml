@@ -1,0 +1,88 @@
+﻿@model ALFMovers.Models.Employee
+@Layout
+@{
+    ViewBag.Title = "Create";
+}
+
+<!-- REGISTRATION/ADDING-->
+<div class="content-wrapper">
+    <section class="content">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><strong>ALF Employees</strong></h3>
+                                </div>
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    <br />
+                                    <div class="col-md-4"><label><strong>First Name</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.EmpFName, new { htmlAttributes = new { @class = "form-control", @id="FName", placeholder = "Enter first name" } })
+                                        @Html.ValidationMessageFor(model => model.EmpFName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-md-4"><br /><label><strong>Last Name</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.EmpLName, new { htmlAttributes = new { @class = "form-control", @id = "LName", placeholder = "Enter last name" } })
+                                        @Html.ValidationMessageFor(model => model.EmpLName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4"><br /><label><strong>Contact</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.EmpContact, new { htmlAttributes = new { @class = "form-control", @id = "Contact", placeholder = "Enter contact" } })
+                                        @Html.ValidationMessageFor(model => model.EmpContact, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="radio">
+                                    <div class="col-md-4"><br /><label><strong>Position</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.RadioButtonFor(model => model.Position, "Driver")<label>  Driver</label><br />
+                                        @Html.RadioButtonFor(model => model.Position, "Carrier")<label>  Carrier</label>
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="form-group">
+                                    <div class="pull-right">
+                                        <br />
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                        <input type="button" id="clear" value="Clear" class="btn btn-primary" />
+                                        <a href="@Url.Action("Index","Employee")" type="button" class="btn btn-md btn-primary">Cancel</a>
+                                    </div>
+                                </div>
+
+                                </div>
+                            </form>
+                            </div>
+                    </div>
+                </div>
+
+                                }
+        </section>
+        </div>
+
+
+                                <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                                <script src="~/Scripts/jquery.validate.min.js"></script>
+                                <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>

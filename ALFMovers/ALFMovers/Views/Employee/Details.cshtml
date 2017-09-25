@@ -1,0 +1,50 @@
+﻿@model ALFMovers.Models.Employee
+@Layout
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpLName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpLName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpJoined)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpJoined)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

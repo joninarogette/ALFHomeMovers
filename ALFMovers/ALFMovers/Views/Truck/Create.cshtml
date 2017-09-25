@@ -1,0 +1,86 @@
+﻿@model ALFMovers.Models.Truck
+@Layout
+@{
+    ViewBag.Title = "Create";
+}
+
+<!-- REGISTRATION/ADDING-->
+<div class="content-wrapper">
+    <section class="content">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><strong>ALF Trucks</strong></h3>
+                                </div>
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    <br />
+                                    <div class="col-md-4"><label><strong>Plate Number</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.TruckPlateNo, new { htmlAttributes = new { @class = "form-control", @id = "plate", placeholder = "Enter the plate number of the truck" } })
+                                        @Html.ValidationMessageFor(model => model.TruckPlateNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4"><br /><label><strong>Model</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.TruckModel, new { htmlAttributes = new { @class = "form-control", @id = "model", placeholder = "Enter the truck model" } })
+                                        @Html.ValidationMessageFor(model => model.TruckModel, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4"><br /><label><strong>Capacity</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @id = "capacity", placeholder = "Enter number of capacity" } })
+                                        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4"><br /><label><strong>Date</strong></label></div>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.TruckAdded, new { htmlAttributes = new { @class = "form-control", @id = "date", placeholder = "Enter the date truck added" } })
+                                        @Html.ValidationMessageFor(model => model.TruckAdded, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="pull-right">
+                                        <br />
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                        <input type="button" id="void" value="Clear" class="btn btn-primary" />
+                                        <a href="@Url.Action("Index","Truck")" type="button" class="btn btn-md btn-primary">Cancel</a>
+                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </section>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>

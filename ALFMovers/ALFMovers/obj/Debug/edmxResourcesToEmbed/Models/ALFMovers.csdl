@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ALFMoversModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustID" />
+    </Key>
+    <Property Name="CustID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CustContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FromAddrss" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ToAddrss" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuedDate" Type="DateTime" Precision="3" />
+    <Property Name="SchedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Transactions" Relationship="ALFMoversModel.FK_Transaction_Customer" FromRole="Customer" ToRole="Transaction" />
+  </EntityType>
+  <EntityContainer Name="ALFMoversEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Employees" EntityType="ALFMoversModel.Employee" />
+    <EntitySet Name="Trucks" EntityType="ALFMoversModel.Truck" />
+    <EntitySet Name="Transactions" EntityType="ALFMoversModel.Transaction" />
+    <EntitySet Name="TransEmps" EntityType="ALFMoversModel.TransEmp" />
+    <EntitySet Name="TransTrucks" EntityType="ALFMoversModel.TransTruck" />
+    <AssociationSet Name="FK_Transaction_Customer" Association="ALFMoversModel.FK_Transaction_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransEmp_Employee" Association="ALFMoversModel.FK_TransEmp_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TransEmp" EntitySet="TransEmps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransEmp_Transaction" Association="ALFMoversModel.FK_TransEmp_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="TransEmp" EntitySet="TransEmps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransTruck_Transaction" Association="ALFMoversModel.FK_TransTruck_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="TransTruck" EntitySet="TransTrucks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransTruck_Truck" Association="ALFMoversModel.FK_TransTruck_Truck">
+      <End Role="Truck" EntitySet="Trucks" />
+      <End Role="TransTruck" EntitySet="TransTrucks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpFName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmpLName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmpContact" Type="String" FixedLength="false" MaxLength="Max" Unicode="false" />
+    <Property Name="EmpJoined" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="TransEmps" Relationship="ALFMoversModel.FK_TransEmp_Employee" FromRole="Employee" ToRole="TransEmp" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Truck">
+    <Key>
+      <PropertyRef Name="TruckPlateNo" />
+    </Key>
+    <Property Name="TruckPlateNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TruckModel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Capacity" Type="Int32" />
+    <Property Name="TruckAdded" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TransTrucks" Relationship="ALFMoversModel.FK_TransTruck_Truck" FromRole="Truck" ToRole="TransTruck" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="Byte" />
+    <Property Name="Payment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CustID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="ALFMoversModel.FK_Transaction_Customer" FromRole="Transaction" ToRole="Customer" />
+    <NavigationProperty Name="TransEmps" Relationship="ALFMoversModel.FK_TransEmp_Transaction" FromRole="Transaction" ToRole="TransEmp" />
+    <NavigationProperty Name="TransTrucks" Relationship="ALFMoversModel.FK_TransTruck_Transaction" FromRole="Transaction" ToRole="TransTruck" />
+  </EntityType>
+  <EntityType Name="TransEmp">
+    <Key>
+      <PropertyRef Name="TransEmpID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" />
+    <Property Name="EmpID" Type="Int32" Nullable="false" />
+    <Property Name="TransEmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Employee" Relationship="ALFMoversModel.FK_TransEmp_Employee" FromRole="TransEmp" ToRole="Employee" />
+    <NavigationProperty Name="Transaction" Relationship="ALFMoversModel.FK_TransEmp_Transaction" FromRole="TransEmp" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="TransTruck">
+    <Key>
+      <PropertyRef Name="TransTruckID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" />
+    <Property Name="TruckPlateNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TransTruckID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Transaction" Relationship="ALFMoversModel.FK_TransTruck_Transaction" FromRole="TransTruck" ToRole="Transaction" />
+    <NavigationProperty Name="Truck" Relationship="ALFMoversModel.FK_TransTruck_Truck" FromRole="TransTruck" ToRole="Truck" />
+  </EntityType>
+  <Association Name="FK_Transaction_Customer">
+    <End Type="ALFMoversModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="ALFMoversModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransEmp_Employee">
+    <End Type="ALFMoversModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="ALFMoversModel.TransEmp" Role="TransEmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="TransEmp">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransEmp_Transaction">
+    <End Type="ALFMoversModel.Transaction" Role="Transaction" Multiplicity="1" />
+    <End Type="ALFMoversModel.TransEmp" Role="TransEmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="TransID" />
+      </Principal>
+      <Dependent Role="TransEmp">
+        <PropertyRef Name="TransID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransTruck_Transaction">
+    <End Type="ALFMoversModel.Transaction" Role="Transaction" Multiplicity="1" />
+    <End Type="ALFMoversModel.TransTruck" Role="TransTruck" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="TransID" />
+      </Principal>
+      <Dependent Role="TransTruck">
+        <PropertyRef Name="TransID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransTruck_Truck">
+    <End Type="ALFMoversModel.Truck" Role="Truck" Multiplicity="1" />
+    <End Type="ALFMoversModel.TransTruck" Role="TransTruck" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truck">
+        <PropertyRef Name="TruckPlateNo" />
+      </Principal>
+      <Dependent Role="TransTruck">
+        <PropertyRef Name="TruckPlateNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

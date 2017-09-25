@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aeb7b808c61640d38a58fc22fd1768ca" Name="Diagram1">
+        <EntityTypeShape EntityType="ALFMoversModel.Customer" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALFMoversModel.Employee" Width="1.5" PointX="6.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ALFMoversModel.Truck" Width="1.5" PointX="0.5" PointY="3.875" />
+        <EntityTypeShape EntityType="ALFMoversModel.Transaction" Width="1.5" PointX="2.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ALFMoversModel.TransEmp" Width="1.5" PointX="4.625" PointY="1.25" />
+        <EntityTypeShape EntityType="ALFMoversModel.TransTruck" Width="1.5" PointX="2.625" PointY="3.875" />
+        <AssociationConnector Association="ALFMoversModel.FK_Transaction_Customer" />
+        <AssociationConnector Association="ALFMoversModel.FK_TransEmp_Employee" />
+        <AssociationConnector Association="ALFMoversModel.FK_TransEmp_Transaction" />
+        <AssociationConnector Association="ALFMoversModel.FK_TransTruck_Transaction" />
+        <AssociationConnector Association="ALFMoversModel.FK_TransTruck_Truck" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

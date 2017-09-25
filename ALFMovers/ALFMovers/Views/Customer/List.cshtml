@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ALFMovers.Models.Customer>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>Service Requests</strong></h3>
+                        </div>
+
+                        <table id="emp" class="table table-bordered table-hover">
+                            <thead>
+                                <tr role="row">
+                                    <th>Customer Name</th>
+                                    <th>Contact</th>
+                                    <th>Schedule Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.CustName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CustContact)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SchedDate)</td>
+                                        <td>    
+                                            <a href="/Customer/Details/@Html.DisplayFor(modelItem => item.CustID)" type="button" class="btn btn-md btn-success">View</a> 
+                                            <a href="/Customer/Delete/@Html.DisplayFor(modelItem => item.CustID)" type="button" class="btn btn-md btn-success">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
