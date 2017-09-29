@@ -125,5 +125,40 @@ namespace ALFMovers.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Sched(int? id)
+        {
+            Session["customerID"] = id;
+            Customer c = db.Customers.Find(id);
+            var test = c.SchedDate;
+            var truckList = db.Trucks.SqlQuery("select * from Truck WHERE EmpID NOT IN (SELECT TransTruck.TruckPlateNo FROM TransTruck INNER JOIN Transactions ON TransTruck.TransID = Transactions.TransID where Transactions.SchedDate = '" + test + "')").ToList<Truck>();
+
+            return View(truckList);
+
+        }
+
+        public String SchedSubmit(int id)
+        {
+            TransTruck T = new TransTruck();
+            T.TruckPlateNo = "";
+            T.TransID = 2;
+            db.TransTrucks.Add(T);
+            db.SaveChanges();
+            return "Success" + id;
+        }
+
+        public JsonResult GetTrucks()
+        {
+            int id = Convert.ToInt32(Session["customerID"]);
+            Customer c = db.Customers.Find(id);
+            var test = c.SchedDate;
+            var truckList = db.Trucks.SqlQuery("select * from Truck WHERE TruckPlateNO NOT IN (SELECT TransTruck.TruckPlateNo FROM TransTruck INNER JOIN Transactions ON TransTruck.TransID = Transactions.TransID where Transactions.SchedDate = '" + test + "')").ToList<Truck>();
+            string all = "";
+            foreach (var t in truckList )
+            {
+                all += "<tr> <td>"+t.TruckPlateNo.ToString()+"</td><td>"+t.TruckModel.ToString()+"</td><td>"+t.Capacity.ToString()+ "</td><td><input type='checkbox' value='"+t.TruckPlateNo.ToString()+"' name='truck' /></td></ tr > ";
+            }
+            return Json(all,JsonRequestBehavior.AllowGet); 
+        }
     }
 }

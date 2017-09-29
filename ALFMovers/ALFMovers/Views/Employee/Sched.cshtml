@@ -1,0 +1,185 @@
+﻿@model IEnumerable<ALFMovers.Models.Employee>
+
+@{
+    ViewBag.Title = "Sched";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- START CUSTOM TABS -->
+        <h2 class="page-header">Schedule Client</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                
+                <div class="nav-tabs-right">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-th"></i> Custom Tabs</li>
+                        <li class="active"><a href="#tab_1" data-toggle="tab">Set Transaction</a></li>
+                        <li><a href="#tab_2" data-toggle="tab">Select Employees</a></li>
+                        <li><a href="#tab_3" data-toggle="tab">Select Truck and Finalize</a></li>
+                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="row">
+                                <!-- Start of Transaction -->
+                                <div class="row col-sm-12">
+                                    <label for="cust" class="col-sm-2"> Customer </label>
+                                    <input type="text" class="col-sm-5" disabled id="cust" />
+                                    <br />
+                                </div>
+
+                                <div class="row col-sm-12">
+                                    <label for="faddress" class="col-sm-2"> Customer Address</label>
+                                    <input type="text" class="col-sm-5" disabled id="faddress" />
+                                    <br />
+                                </div>
+
+                                <div class="row col-sm-12">
+                                    <label for="taddress" class="col-sm-2"> Destination Address</label>
+                                    <input type="text" class="col-sm-5" disabled id="taddress" />
+                                    <br />
+                                </div>
+
+                                <div class="row col-sm-12">
+                                    <label for="payment" class="col-sm-2"> Total Payment </label>
+                                    <input type="text" class="col-sm-5" id="payment" required />
+                                </div>
+                                <!-- End of Transaction -->
+                            </div>
+                            
+                            </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <table id="emp" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr role="row">
+                                        <th>
+                                            <strong>First Name</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Last Name</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Contact</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Position</strong>
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmpFName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmpLName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmpContact)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Position)
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" value="@item.EmpID" name="employee" />
+                                            </td>
+                                        </tr>
+                                    }
+
+                            </table>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3">
+                            <!-- Start of Truck -->
+                            <table id="emp" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr role="row">
+                                        <th>
+                                            <strong>Plate Number</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Model</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Capacity</strong>
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="truckbody">
+
+
+                                </tbody>    
+
+
+</table>
+                            
+                            <!-- End of Truck -->
+                            
+                                
+                            
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                    <div class="footer pull-right">
+                        <input type="button" id="submitsched" value="Finalize" class="btn btn-success" />
+                        <a href="@Url.Action("List","Customer")" type="button" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+                
+                <!-- nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+
+           
+        </div>
+        <!-- /.row -->
+        <!-- END CUSTOM TABS -->
+ 
+    </section>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        
+        $.ajax({
+            type: 'get',
+            url: '/Customer/GetClient/',
+            success: function (data) {
+                $('#cust').val(data.name);
+                $('#faddress').val(data.faddress);
+                $('#taddress').val(data.taddress);
+            }
+        })
+
+    };
+    $(document).ready(function () {
+        
+
+        $.ajax({
+            type: 'get',
+            url: '/Truck/GetTrucks/',
+            success: function (data) {
+                $('#truckbody').html(data);
+            }
+        })
+    });
+</script>

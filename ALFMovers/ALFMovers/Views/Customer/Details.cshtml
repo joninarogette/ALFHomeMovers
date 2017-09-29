@@ -19,7 +19,7 @@
             <div class="box-body">
                 <label>Customer Name:</label><br />
                 @Html.DisplayFor(model => model.CustName)<br /><br />
-                <label>Customer:Contact</label><br />
+                <label>Customer Contact</label><br />
                 @Html.DisplayFor(model => model.CustContact)    <br />      <br />      
                 <label>Address:</label><br />
                 @Html.DisplayFor(model => model.FromAddrss)    <br />   <br />         
@@ -33,7 +33,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <div class="pull-right">
-                    <input type="button" value="Schedule" class="btn btn-primary" />
+                    <a href="/Employee/Sched/@Html.DisplayFor(model => model.CustID)" class="btn btn-primary">Schedule</a>
                     <a href="@Url.Action("List","Customer")" type="button" class="btn btn-primary">Cancel</a>
                 </div>
             </div>

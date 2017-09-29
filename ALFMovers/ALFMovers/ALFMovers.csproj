@@ -6857,16 +6857,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ALFMovers.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ALFMovers.edmx</DependentUpon>
-      <LastGenOutput>ALFMovers.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ALFMovers.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ALFMovers.edmx</DependentUpon>
-      <LastGenOutput>ALFMovers.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -7525,7 +7515,24 @@
     <Content Include="Content\dist\css\adminlte.min.css.map" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-codes.json" />
+    <EntityDeploy Include="Models\ALFMovers.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ALFMovers.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ALFMovers.edmx.diagram">
+      <DependentUpon>ALFMovers.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\ALFMovers.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALFMovers.edmx</DependentUpon>
+      <LastGenOutput>ALFMovers.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ALFMovers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALFMovers.edmx</DependentUpon>
+      <LastGenOutput>ALFMovers.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -7587,13 +7594,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\ALFMovers.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ALFMovers.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ALFMovers.edmx.diagram">
-      <DependentUpon>ALFMovers.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
@@ -7611,6 +7611,9 @@
     <Content Include="Views\Public\Dashboard.cshtml" />
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Employee\Sched.cshtml" />
+    <Content Include="Views\Truck\Sched.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7620,7 +7623,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Transactions\" />
     <Folder Include="Views\Trans\" />
   </ItemGroup>
   <ItemGroup>

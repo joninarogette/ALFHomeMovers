@@ -3,65 +3,66 @@
   <EntityContainerMapping StorageEntityContainer="ALFMoversModelStoreContainer" CdmEntityContainer="ALFMoversEntities">
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="ALFMoversModel.Customer">
-        <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="SchedDate" ColumnName="SchedDate" />
+        <MappingFragment StoreEntitySet="Customers">
           <ScalarProperty Name="CustID" ColumnName="CustID" />
           <ScalarProperty Name="CustName" ColumnName="CustName" />
           <ScalarProperty Name="CustContact" ColumnName="CustContact" />
           <ScalarProperty Name="FromAddrss" ColumnName="FromAddrss" />
           <ScalarProperty Name="ToAddrss" ColumnName="ToAddrss" />
           <ScalarProperty Name="IssuedDate" ColumnName="IssuedDate" />
+          <ScalarProperty Name="SchedDate" ColumnName="SchedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employees">
       <EntityTypeMapping TypeName="ALFMoversModel.Employee">
         <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="EmpJoined" ColumnName="EmpJoined" />
-          <ScalarProperty Name="EmpContact" ColumnName="EmpContact" />
-          <ScalarProperty Name="EmpLName" ColumnName="EmpLName" />
-          <ScalarProperty Name="EmpFName" ColumnName="EmpFName" />
           <ScalarProperty Name="EmpID" ColumnName="EmpID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Trucks">
-      <EntityTypeMapping TypeName="ALFMoversModel.Truck">
-        <MappingFragment StoreEntitySet="Truck">
-          <ScalarProperty Name="TruckAdded" ColumnName="TruckAdded" />
-          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-          <ScalarProperty Name="TruckModel" ColumnName="TruckModel" />
-          <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
+          <ScalarProperty Name="EmpFName" ColumnName="EmpFName" />
+          <ScalarProperty Name="EmpLName" ColumnName="EmpLName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="EmpJoined" ColumnName="EmpJoined" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EmpContact" ColumnName="EmpContact" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Transactions">
       <EntityTypeMapping TypeName="ALFMoversModel.Transaction">
-        <MappingFragment StoreEntitySet="Transaction">
-          <ScalarProperty Name="CustID" ColumnName="CustID" />
-          <ScalarProperty Name="Payment" ColumnName="Payment" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
+        <MappingFragment StoreEntitySet="Transactions">
           <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="SchedDate" ColumnName="SchedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TransEmps">
       <EntityTypeMapping TypeName="ALFMoversModel.TransEmp">
         <MappingFragment StoreEntitySet="TransEmp">
-          <ScalarProperty Name="TransEmpID" ColumnName="TransEmpID" />
-          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
           <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="TransEmpID" ColumnName="TransEmpID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TransTrucks">
       <EntityTypeMapping TypeName="ALFMoversModel.TransTruck">
         <MappingFragment StoreEntitySet="TransTruck">
-          <ScalarProperty Name="TransTruckID" ColumnName="TransTruckID" />
-          <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
           <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
+          <ScalarProperty Name="TransTruckID" ColumnName="TransTruckID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trucks">
+      <EntityTypeMapping TypeName="ALFMoversModel.Truck">
+        <MappingFragment StoreEntitySet="Truck">
+          <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
+          <ScalarProperty Name="TruckModel" ColumnName="TruckModel" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="TruckAdded" ColumnName="TruckAdded" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

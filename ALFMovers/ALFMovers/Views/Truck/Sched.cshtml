@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ALFMovers.Models.Truck>
+
+@{
+    ViewBag.Title = "Sched";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>Available Trucks</strong></h3>
+                        </div>
+
+                        <table id="emp" class="table table-bordered table-hover">
+                            <thead>
+                                <tr role="row">
+                                    <th>
+                                        <strong>Plate Number</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Truck Model</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Capacity</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Action</strong>
+                                    </th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TruckPlateNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TruckModel)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Capacity)
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" value="@item.TruckPlateNo" name="employee" />
+                                        </td>
+                                    </tr>
+                                }
+
+                        </table>
+                    </div>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <input type="button" id="submitsched" value="Submit" />
+                            <a href="@Url.Action("List","Customer")" type="button" class="btn btn-primary">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ALFMovers.Models;
+using System.Data.SqlClient;
 
 namespace ALFMovers.Controllers
 {
@@ -51,7 +52,7 @@ namespace ALFMovers.Controllers
             if (ModelState.IsValid)
             {
                 employee.EmpJoined = DateTime.Now;
-                employee.EmpID = 1;
+                employee.EmpID = 1;;
                 
                 db.Employees.Add(employee);
                 db.SaveChanges();
@@ -125,6 +126,27 @@ namespace ALFMovers.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Sched(int? id)
+        {
+            Session["customerID"] = id;
+            Customer c = db.Customers.Find(id);
+            var test = c.SchedDate;
+            var customerList = db.Employees.SqlQuery("select * from Employee WHERE EmpID NOT IN (SELECT TransEmp.EmpID FROM TransEmp INNER JOIN Transactions ON TransEmp.TransID = Transactions.TransID where Transactions.SchedDate = '"+test+"')").ToList<Employee>();
+
+            return View(customerList);
+            
+        }
+
+        public String SchedSubmit(int id)
+        {
+            TransEmp E = new TransEmp();
+            E.EmpID = id;
+            E.TransID = 2;
+            db.TransEmps.Add(E);
+            db.SaveChanges();
+            return "Success"+id;
         }
     }
 }

@@ -19,6 +19,55 @@
         $('#capacity').val("");
         $('#date').val("");
     });
+    
+    $("#submitsched").click(function () {
+
+        $.ajax({
+            type: 'get',
+            url: '/Transaction/Create/' + test,
+            success: function (data) {
+                alert(data);
+            }
+        })
+
+        $.each($("input[name='employee']:checked"),function(){
+            var test = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '/Employee/SchedSubmit/'+test,
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
+        $.each($("input[name='truck']:checked"), function () {
+            var test = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '/Truck/SchedSubmit/' + test,
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
+        location.reload();
+    });
+
+    $("#submittruck").click(function () {
+        $.each($("input[name='truck']:checked"), function () {
+            var test = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '/Truck/SchedSubmit/' + test,
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
+        location.reload();
+    });
 
 });
+
+
 

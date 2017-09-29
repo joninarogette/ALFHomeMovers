@@ -17,6 +17,7 @@ namespace ALFMovers.Controllers
         // GET: Customer
         public ActionResult List()
         {
+
             return View(db.Customers.ToList());
         }
 
@@ -57,7 +58,7 @@ namespace ALFMovers.Controllers
             {
                 customer.IssuedDate = DateTime.Now;
                 customer.CustID = 1;
-
+                
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -100,20 +101,21 @@ namespace ALFMovers.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult Sched(int? id)
+        
+        public object GetClient()
         {
-            if (id == null)
+            
+            var custid = Convert.ToInt32(Session["customerID"]);
+            var customers = db.Customers.Where(c => c.CustID == custid ).FirstOrDefault();
+            
+            return  Json(new
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
+                name = customers.CustName,
+                faddress = customers.FromAddrss,
+                taddress = customers.ToAddrss,
+            },JsonRequestBehavior.AllowGet);
         }
+
 
 
 
