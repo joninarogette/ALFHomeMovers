@@ -1,0 +1,145 @@
+﻿@model ALFMovers.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>Transaction Details</strong></h3>
+                        </div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Schedule
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SchedDate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+
+                            <dd>
+                                @if (@Html.DisplayFor(model => model.Status).ToString() == "0")
+                                {
+                                    @: Unfinished
+                                 }
+                                else
+                                {
+                                    @: Finished
+                                }
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Payment)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Payment)
+                            </dd>
+
+                            <dt>
+                                Customer
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Customer.CustName)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <!-- Start of Employee -->
+                    <table id="emp" class="table table-bordered table-hover">
+                        <thead>
+                            <tr role="row">
+                                <th class="col-xs-4">
+                                    <strong>Employee</strong>
+                                </th>
+                                <th>
+                                    <strong>Position</strong>
+                                </th>
+                                <th>
+                                    <strong>Contact</strong>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="empbody"></tbody>
+
+
+                    </table>
+
+                    <!-- End of Employee -->
+                    <!-- Start of Truck -->
+                    <table id="emp" class="table table-bordered table-hover">
+                        <thead>
+                            <tr role="row">
+                                <th class="col-xs-4">
+                                    <strong>Truck Plate Number</strong>
+                                </th>
+                                <th>
+                                    <strong>Model</strong>
+                                </th>
+                                <th>
+                                    <strong>Capacity</strong>
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="truckbody"></tbody>
+
+
+                    </table>
+
+                    <!-- End of Truck -->
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.TransID }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+            <!-- /.box -->
+        </div> 
+    </section>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+
+        $.ajax({
+            type: 'get',
+            url: '/Employee/GetTransEmps/',
+            success: function (data) {
+                $('#empbody').html(data);
+            }
+        })
+
+    };
+    $(document).ready(function () {
+
+
+        $.ajax({
+            type: 'get',
+            url: '/Truck/GetTransTrucks/',
+            success: function (data) {
+                $('#truckbody').html(data);
+            }
+        })
+    });
+</script>

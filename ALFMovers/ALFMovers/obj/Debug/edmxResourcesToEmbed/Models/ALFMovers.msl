@@ -59,6 +59,7 @@
     <EntitySetMapping Name="Trucks">
       <EntityTypeMapping TypeName="ALFMoversModel.Truck">
         <MappingFragment StoreEntitySet="Truck">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
           <ScalarProperty Name="TruckModel" ColumnName="TruckModel" />
           <ScalarProperty Name="Capacity" ColumnName="Capacity" />

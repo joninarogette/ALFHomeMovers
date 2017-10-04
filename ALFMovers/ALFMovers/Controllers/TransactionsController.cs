@@ -24,6 +24,7 @@ namespace ALFMovers.Controllers
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
+            Session["TransactionId"] = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -128,5 +129,22 @@ namespace ALFMovers.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public int newtrans(int id)
+        {
+            var cid = Session["customerID"];
+            var cust = db.Customers.Find(cid);
+            var trans = new Transaction();
+            trans.SchedDate = cust.SchedDate;
+            trans.Status = 0;
+            trans.Payment = id;
+            trans.CustID = Convert.ToInt32(cid);
+            db.Transactions.Add(trans);
+            db.SaveChanges();
+            Session["transid"] = trans.TransID;
+            return trans.TransID;
+        }
+
+         
     }
 }

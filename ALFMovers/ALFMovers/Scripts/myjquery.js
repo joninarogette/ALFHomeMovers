@@ -21,36 +21,40 @@
     });
     
     $("#submitsched").click(function () {
-
+        alert("Transaction Saved");
+        var amount = $('#payment').val();
+        var transid = "";
         $.ajax({
             type: 'get',
-            url: '/Transaction/Create/' + test,
+            url: '/Transactions/newtrans/' + amount,
             success: function (data) {
-                alert(data);
+                console.log("transaction" + data);
             }
-        })
-
-        $.each($("input[name='employee']:checked"),function(){
+        });
+        $.each($("input[name='employee']:checked"), function () {
             var test = $(this).val();
             $.ajax({
                 type: 'get',
-                url: '/Employee/SchedSubmit/'+test,
+                url: '/Employee/SchedSubmit/' + test,
                 success: function (data) {
-                    alert(data);
+                    console.log("Employee" + data);
                 }
             })
-        })
+        });
         $.each($("input[name='truck']:checked"), function () {
             var test = $(this).val();
             $.ajax({
                 type: 'get',
                 url: '/Truck/SchedSubmit/' + test,
                 success: function (data) {
-                    alert(data);
+                    console.log("Truck" + data);
                 }
             })
-        })
-        location.reload();
+        });
+        
+        window.location.href = '/Customer/List';
+
+        
     });
 
     $("#submittruck").click(function () {
@@ -64,7 +68,7 @@
                 }
             })
         })
-        location.reload();
+        
     });
 
 });

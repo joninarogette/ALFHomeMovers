@@ -21,7 +21,7 @@
     <Property Name="EmpLName" Type="varchar(max)" />
     <Property Name="Position" Type="varchar" MaxLength="50" />
     <Property Name="EmpJoined" Type="datetime" />
-    <Property Name="Status" Type="tinyint" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
     <Property Name="EmpContact" Type="text" />
   </EntityType>
   <EntityType Name="Transactions">
@@ -58,6 +58,7 @@
     <Property Name="TruckModel" Type="varchar(max)" />
     <Property Name="Capacity" Type="int" />
     <Property Name="TruckAdded" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Transactions_Customers">
     <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
@@ -120,12 +121,12 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="ALFMoversModelStoreContainer">
-    <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Employee" EntityType="Self.Employee" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Transactions" EntityType="Self.Transactions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TransEmp" EntityType="Self.TransEmp" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TransTruck" EntityType="Self.TransTruck" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Truck" EntityType="Self.Truck" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransEmp" EntityType="Self.TransEmp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransTruck" EntityType="Self.TransTruck" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Truck" EntityType="Self.Truck" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Transactions_Customers" Association="Self.FK_Transactions_Customers">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Transactions" EntitySet="Transactions" />

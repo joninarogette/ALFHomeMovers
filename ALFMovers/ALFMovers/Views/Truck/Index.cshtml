@@ -25,7 +25,8 @@
                                     <th>Truck Plate Number</th>
                                     <th>Model</th>
                                     <th>Capacity</th>
-                                    <th>Action</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,23 @@
                                         <td>@Html.DisplayFor(modelItem => item.TruckPlateNo)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TruckModel)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
-                                        <td> </td>
+                                        <td>
+                                            @if (@Html.DisplayFor(modelItem => item.Status).ToString()=="active")
+                                            {
+                                                <label class="switch">
+                                                 <input type="checkbox" checked onclick="status('@Html.DisplayFor(modelItem => item.TruckPlateNo)')">
+                                                 <span class="slider round"></span>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="switch">
+                                                 <input type="checkbox" onclick="status('@Html.DisplayFor(modelItem => item.TruckPlateNo)')">
+                                                  <span class="slider round"></span>
+                                                </label>
+                                            }
+                                        </td>
+                                        <td></td>
                                     </tr>
                                 }
                             </tbody>
@@ -56,3 +73,21 @@
         </div>
     </section>
 </div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>
+<script type="text/javascript">
+    function status(id) {
+        $.ajax({
+            type: 'get',
+            url: '/Truck/ChangeStatus/'+id,
+            success: function (data) {
+                alert(data);
+            }
+        })
+    }
+
+</script>
+
+

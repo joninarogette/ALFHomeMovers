@@ -137,11 +137,11 @@ namespace ALFMovers.Controllers
 
         }
 
-        public String SchedSubmit(int id)
+        public String SchedSubmit(string id)
         {
             TransTruck T = new TransTruck();
-            T.TruckPlateNo = "";
-            T.TransID = 2;
+            T.TruckPlateNo = id.ToString();
+            T.TransID = Convert.ToInt32(Session["transid"]);
             db.TransTrucks.Add(T);
             db.SaveChanges();
             return "Success" + id;
@@ -152,13 +152,43 @@ namespace ALFMovers.Controllers
             int id = Convert.ToInt32(Session["customerID"]);
             Customer c = db.Customers.Find(id);
             var test = c.SchedDate;
-            var truckList = db.Trucks.SqlQuery("select * from Truck WHERE TruckPlateNO NOT IN (SELECT TransTruck.TruckPlateNo FROM TransTruck INNER JOIN Transactions ON TransTruck.TransID = Transactions.TransID where Transactions.SchedDate = '" + test + "')").ToList<Truck>();
+            var truckList = db.Trucks.SqlQuery("select * from Truck WHERE Truck.Status !=  'inactive' and TruckPlateNO NOT IN (SELECT TransTruck.TruckPlateNo FROM TransTruck INNER JOIN Transactions ON TransTruck.TransID = Transactions.TransID where Transactions.SchedDate = '" + test + "')").ToList<Truck>();
             string all = "";
             foreach (var t in truckList )
             {
                 all += "<tr> <td>"+t.TruckPlateNo.ToString()+"</td><td>"+t.TruckModel.ToString()+"</td><td>"+t.Capacity.ToString()+ "</td><td><input type='checkbox' value='"+t.TruckPlateNo.ToString()+"' name='truck' /></td></ tr > ";
             }
             return Json(all,JsonRequestBehavior.AllowGet); 
+        }
+
+        public JsonResult GetTransTrucks()
+        {
+            int id = Convert.ToInt32(Session["TransactionId"]);
+            var truckList = db.Trucks.SqlQuery("select * from Truck WHERE TruckPlateNO IN (SELECT TransTruck.TruckPlateNo FROM TransTruck INNER JOIN Transactions ON TransTruck.TransID = Transactions.TransID where Transactions.TransID = " + id + ")").ToList<Truck>();
+            string all = "";
+            foreach (var t in truckList)
+            {
+                all += "<tr> <td>" + t.TruckPlateNo.ToString() + "</td><td>" + t.TruckModel.ToString() + "</td><td>" + t.Capacity.ToString() + "</td></ tr > ";
+            }
+            return Json(all, JsonRequestBehavior.AllowGet);
+        }
+
+        public string ChangeStatus(string id)
+        {
+            Truck truck = db.Trucks.Find(id);
+            if (truck.Status=="active")
+            {
+                truck.Status = "inactive";
+                db.Entry(truck).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                truck.Status = "active";
+                db.Entry(truck).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return "Status Changed to " + truck.Status;
         }
     }
 }

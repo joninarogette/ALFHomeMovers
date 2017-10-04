@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ALFMovers.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>Service Requests</strong></h3>
+                        </div>
+
+                        <table id="emp" class="table table-bordered table-hover">
+                            <tr>
+                                <th>
+                                    Scheduled Date
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Payment)
+                                </th>
+                                <th>
+                                    Customer Name
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SchedDate)
+                                    </td>
+                                    <td>
+                                       @if (@Html.DisplayFor(modelItem => item.Status).ToString()=="0")
+                                       {
+                                           @: Unfinished
+                                       }
+                                       else
+                                       {
+                                           @: Finished
+                                       }
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Payment)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Customer.CustName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.TransID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.TransID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.TransID })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>

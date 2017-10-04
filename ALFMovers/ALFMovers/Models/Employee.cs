@@ -25,7 +25,7 @@ namespace ALFMovers.Models
         public string EmpLName { get; set; }
         public string Position { get; set; }
         public Nullable<System.DateTime> EmpJoined { get; set; }
-        public Nullable<byte> Status { get; set; }
+        public string Status { get; set; }
         public string EmpContact { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

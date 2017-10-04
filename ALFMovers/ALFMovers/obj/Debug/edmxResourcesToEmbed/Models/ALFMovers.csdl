@@ -22,7 +22,7 @@
     <Property Name="EmpLName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="EmpJoined" Type="DateTime" Precision="3" />
-    <Property Name="Status" Type="Byte" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="EmpContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="TransEmps" Relationship="Self.FK_TransEmp_Employee" FromRole="Employee" ToRole="TransEmp" />
   </EntityType>
@@ -68,6 +68,7 @@
     <Property Name="Capacity" Type="Int32" />
     <Property Name="TruckAdded" Type="DateTime" Precision="3" />
     <NavigationProperty Name="TransTrucks" Relationship="Self.FK_TransTruck_Truck" FromRole="Truck" ToRole="TransTruck" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Transactions_Customers">
     <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />

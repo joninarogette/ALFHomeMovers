@@ -52,7 +52,8 @@ namespace ALFMovers.Controllers
             if (ModelState.IsValid)
             {
                 employee.EmpJoined = DateTime.Now;
-                employee.EmpID = 1;;
+                employee.EmpID = 1;
+                employee.Status = "Available";
                 
                 db.Employees.Add(employee);
                 db.SaveChanges();
@@ -139,11 +140,24 @@ namespace ALFMovers.Controllers
             
         }
 
+        public JsonResult GetTransEmps()
+        {
+            var id = Session["TransactionId"];
+            var empList = db.Employees.SqlQuery("select * from Employee WHERE EmpID  IN (SELECT TransEmp.EmpID FROM TransEmp INNER JOIN Transactions ON TransEmp.TransID = Transactions.TransID where Transactions.TransID = " + id + ")").ToList<Employee>();
+            string all = "";
+            foreach (var t in empList)
+            {
+                all += "<tr> <td>" + t.EmpFName.ToString() + " "+t.EmpLName.ToString()+ "</td><td>" + t.Position.ToString() + "</td><td>" + t.EmpContact.ToString() + "</td></ tr > ";
+            }
+            return Json(all, JsonRequestBehavior.AllowGet);
+
+        }
+
         public String SchedSubmit(int id)
         {
             TransEmp E = new TransEmp();
             E.EmpID = id;
-            E.TransID = 2;
+            E.TransID = Convert.ToInt32(Session["transid"]);
             db.TransEmps.Add(E);
             db.SaveChanges();
             return "Success"+id;

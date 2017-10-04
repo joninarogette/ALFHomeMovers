@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ALFMoversModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ALFMoversModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustID" />
@@ -26,7 +26,7 @@
           <Property Name="EmpLName" Type="varchar(max)" />
           <Property Name="Position" Type="varchar" MaxLength="50" />
           <Property Name="EmpJoined" Type="datetime" />
-          <Property Name="Status" Type="tinyint" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="EmpContact" Type="text" />
         </EntityType>
         <EntityType Name="Transactions">
@@ -63,6 +63,7 @@
           <Property Name="TruckModel" Type="varchar(max)" />
           <Property Name="Capacity" Type="int" />
           <Property Name="TruckAdded" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Transactions_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
@@ -125,12 +126,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ALFMoversModelStoreContainer">
-          <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" Schema="dbo"  />
-          <EntitySet Name="Employee" EntityType="Self.Employee" store:Type="Tables" Schema="dbo"  />
-          <EntitySet Name="Transactions" EntityType="Self.Transactions" store:Type="Tables" Schema="dbo"  />
-          <EntitySet Name="TransEmp" EntityType="Self.TransEmp" store:Type="Tables" Schema="dbo"  />
-          <EntitySet Name="TransTruck" EntityType="Self.TransTruck" store:Type="Tables" Schema="dbo"  />
-          <EntitySet Name="Truck" EntityType="Self.Truck" store:Type="Tables" Schema="dbo"  />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransEmp" EntityType="Self.TransEmp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransTruck" EntityType="Self.TransTruck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Truck" EntityType="Self.Truck" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Transactions_Customers" Association="Self.FK_Transactions_Customers">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Transactions" EntitySet="Transactions" />
@@ -152,8 +153,7 @@
             <End Role="TransTruck" EntitySet="TransTruck" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ALFMoversModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -179,7 +179,7 @@
           <Property Name="EmpLName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmpJoined" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="Byte" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="EmpContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransEmps" Relationship="Self.FK_TransEmp_Employee" FromRole="Employee" ToRole="TransEmp" />
         </EntityType>
@@ -225,6 +225,7 @@
           <Property Name="Capacity" Type="Int32" />
           <Property Name="TruckAdded" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TransTrucks" Relationship="Self.FK_TransTruck_Truck" FromRole="Truck" ToRole="TransTruck" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Transactions_Customers">
           <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
@@ -378,6 +379,7 @@
           <EntitySetMapping Name="Trucks">
             <EntityTypeMapping TypeName="ALFMoversModel.Truck">
               <MappingFragment StoreEntitySet="Truck">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="TruckPlateNo" ColumnName="TruckPlateNo" />
                 <ScalarProperty Name="TruckModel" ColumnName="TruckModel" />
                 <ScalarProperty Name="Capacity" ColumnName="Capacity" />

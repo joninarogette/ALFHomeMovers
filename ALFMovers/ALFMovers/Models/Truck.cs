@@ -24,6 +24,7 @@ namespace ALFMovers.Models
         public string TruckModel { get; set; }
         public Nullable<int> Capacity { get; set; }
         public Nullable<System.DateTime> TruckAdded { get; set; }
+        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransTruck> TransTrucks { get; set; }
