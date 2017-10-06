@@ -11,6 +11,9 @@
     <Property Name="ToAddrss" Type="text" />
     <Property Name="IssuedDate" Type="datetime" />
     <Property Name="SchedDate" Type="date" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="CustFeedback" Type="text" />
+    <Property Name="FeedbackDate" Type="date" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -23,6 +26,7 @@
     <Property Name="EmpJoined" Type="datetime" />
     <Property Name="Status" Type="varchar" MaxLength="50" />
     <Property Name="EmpContact" Type="text" />
+    <Property Name="EmpLicense" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Transactions">
     <Key>

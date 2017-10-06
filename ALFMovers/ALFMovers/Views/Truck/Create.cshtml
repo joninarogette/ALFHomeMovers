@@ -45,21 +45,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-4"><br /><label><strong>Capacity</strong></label></div>
+                                    <div class="col-md-4"><br /><label><strong>Capacity (kg)</strong></label></div>
                                     <div class="col-md-12">
                                         @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @id = "capacity", placeholder = "Enter number of capacity" } })
                                         @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-4"><br /><label><strong>Date</strong></label></div>
-                                    <div class="col-md-12">
-                                        @Html.EditorFor(model => model.TruckAdded, new { htmlAttributes = new { @class = "form-control", @id = "date", placeholder = "Enter the date truck added" } })
-                                        @Html.ValidationMessageFor(model => model.TruckAdded, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
 
                                 <div class="form-group">
                                     <div class="pull-right">

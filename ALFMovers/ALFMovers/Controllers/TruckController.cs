@@ -178,13 +178,13 @@ namespace ALFMovers.Controllers
             Truck truck = db.Trucks.Find(id);
             if (truck.Status=="active")
             {
-                truck.Status = "inactive";
+                truck.Status = "Inactive";
                 db.Entry(truck).State = EntityState.Modified;
                 db.SaveChanges();
             }
             else
             {
-                truck.Status = "active";
+                truck.Status = "Active";
                 db.Entry(truck).State = EntityState.Modified;
                 db.SaveChanges();
             }

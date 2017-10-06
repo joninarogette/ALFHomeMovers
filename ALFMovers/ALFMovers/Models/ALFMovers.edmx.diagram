@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c69231ccb35a45acb4c215e5b624008a" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="c69231ccb35a45acb4c215e5b624008a" Name="Diagram1" ZoomLevel="110">
         <EntityTypeShape EntityType="ALFMoversModel.Customer" Width="1.5" PointX="1.375" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ALFMoversModel.Employee" Width="1.5" PointX="7.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ALFMoversModel.Transaction" Width="1.5" PointX="3.25" PointY="3" IsExpanded="true" />

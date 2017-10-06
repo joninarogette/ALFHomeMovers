@@ -4,39 +4,38 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
 
-<div>
-    <h4>Truck</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TruckModel)
-        </dt>
+        <!-- Default box -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Truck Details</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.TruckModel)
-        </dd>
+            </div>
+            <div class="box-body">
+                <label>Plate Number of the Truck: </label><br />
+                @Html.DisplayFor(model => model.TruckPlateNo)<br /><br />
+                <label>Model of the Truck: </label><br />
+                @Html.DisplayFor(model => model.TruckModel)    <br />      <br />
+                <label>Number of Capcity(kg):</label><br />
+                @Html.DisplayFor(model => model.Capacity)    <br />   <br />
+                <label>Truck Added:</label><br />
+                @Html.DisplayFor(model => model.TruckAdded)      <br />  <br />
+                <label>Status of the Truck:</label><br />
+                @Html.DisplayFor(model => model.Status)<br /><br />
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="pull-right">
+                    <a href="@Url.Action("Index","Truck")" type="button" class="btn btn-primary">Back</a>
+                </div>
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TruckAdded)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TruckAdded)
-        </dd>
-
-    </dl>
+    </section>
+    <!-- /.content -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TruckPlateNo }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

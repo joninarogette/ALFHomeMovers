@@ -27,6 +27,9 @@ namespace ALFMovers.Models
         public string ToAddrss { get; set; }
         public Nullable<System.DateTime> IssuedDate { get; set; }
         public Nullable<System.DateTime> SchedDate { get; set; }
+        public string Status { get; set; }
+        public string CustFeedback { get; set; }
+        public Nullable<System.DateTime> FeedbackDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }

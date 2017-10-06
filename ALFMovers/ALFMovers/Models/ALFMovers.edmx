@@ -16,6 +16,9 @@
           <Property Name="ToAddrss" Type="text" />
           <Property Name="IssuedDate" Type="datetime" />
           <Property Name="SchedDate" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CustFeedback" Type="text" />
+          <Property Name="FeedbackDate" Type="date" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -28,6 +31,7 @@
           <Property Name="EmpJoined" Type="datetime" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="EmpContact" Type="text" />
+          <Property Name="EmpLicense" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -169,6 +173,9 @@
           <Property Name="IssuedDate" Type="DateTime" Precision="3" />
           <Property Name="SchedDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Customers" FromRole="Customers" ToRole="Transactions" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustFeedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FeedbackDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -182,6 +189,7 @@
           <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="EmpContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransEmps" Relationship="Self.FK_TransEmp_Employee" FromRole="Employee" ToRole="TransEmp" />
+          <Property Name="EmpLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -324,6 +332,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="ALFMoversModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
+                <ScalarProperty Name="CustFeedback" ColumnName="CustFeedback" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CustID" ColumnName="CustID" />
                 <ScalarProperty Name="CustName" ColumnName="CustName" />
                 <ScalarProperty Name="CustContact" ColumnName="CustContact" />
@@ -337,6 +348,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ALFMoversModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmpLicense" ColumnName="EmpLicense" />
                 <ScalarProperty Name="EmpID" ColumnName="EmpID" />
                 <ScalarProperty Name="EmpFName" ColumnName="EmpFName" />
                 <ScalarProperty Name="EmpLName" ColumnName="EmpLName" />

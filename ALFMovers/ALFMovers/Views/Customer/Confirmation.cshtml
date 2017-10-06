@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ALFMovers.Models.Customer>
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>Service Requests</strong></h3>
+                        </div>
+
+                        <table id="emp" class="table table-bordered table-hover">
+                            <thead>
+                                <tr role="row">
+                                    <th>Customer Name</th>
+                                    <th>Contact</th>
+                                    <th>Scheduled Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.CustName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CustContact)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SchedDate)</td>
+                                        <td>
+                                                <button class="btn btn-md btn-success" onclick="status('@Html.DisplayFor(modelItem => item.CustID)')" value="Accept"><i class="fa fa-check"></i></button>
+                                                <button class="btn btn-md btn-success" onclick="status('@Html.DisplayFor(modelItem => item.CustID)')" value="Reject"><i class="fa fa-close (alias)"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/myjquery.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("button").click(function(){
+            var clckbtn = $(this).val();
+            //alert(clckbtn);
+
+        })
+        $.ajax({
+            type: 'get',
+            url: '/Customer/Status/' + id,
+            success: function (data) {
+                alert(data);
+                location.reload();
+            }
+        })
+    })
+
+</script>

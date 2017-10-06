@@ -27,6 +27,7 @@ namespace ALFMovers.Models
         public Nullable<System.DateTime> EmpJoined { get; set; }
         public string Status { get; set; }
         public string EmpContact { get; set; }
+        public string EmpLicense { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransEmp> TransEmps { get; set; }

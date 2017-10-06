@@ -47,7 +47,7 @@ namespace ALFMovers.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmpID,EmpFName,EmpLName,EmpContact,Position,EmpJoined")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmpID,EmpFName,EmpLName,EmpContact,Position,EmpJoined,EmpLicenset,Status")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace ALFMovers.Controllers
         }
 
         // GET: Employee/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult EditEmployee(int? id)
         {
             if (id == null)
             {
@@ -83,7 +83,7 @@ namespace ALFMovers.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmpID,EmpFName,EmpLName,EmpContact,EmpJoined")] Employee employee)
+        public ActionResult Edit([Bind(Include = "EmpID,EmpFName,EmpLName,EmpContact,EmpJoined,EmpLicense")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace ALFMovers.Controllers
         {
             Session["customerID"] = id;
             Customer c = db.Customers.Find(id);
-            var test = c.SchedDate;
+            var test = c.SchedDate.ToString();
             var customerList = db.Employees.SqlQuery("select * from Employee WHERE EmpID NOT IN (SELECT TransEmp.EmpID FROM TransEmp INNER JOIN Transactions ON TransEmp.TransID = Transactions.TransID where Transactions.SchedDate = '"+test+"')").ToList<Employee>();
 
             return View(customerList);

@@ -4,53 +4,39 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="content-wrapper">
+    <section class="content">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmpFName)
-        </dt>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.EmpFName)
-        </dd>
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmpLName)
-        </dt>
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><strong>ALF Employees</strong></h3>
+                                </div>
+                                <br />
+                                    <h3>Are you sure you want to delete this employee?</h3>
+                                <br />
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-primary" />
+                                    <a href="@Url.Action("Index","Employee")" type="button" class="btn btn-md btn-primary">Cancel</a>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmpLName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmpContact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmpContact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmpJoined)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmpJoined)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+        }
+    </section>
 </div>

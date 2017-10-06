@@ -17,14 +17,13 @@
                             <h3 class="box-title"><strong>ALF Employees</strong></h3>
                         </div>
                   
-                        <table id="emp" class="table table-bordered table-hover">
+                        <table id="emp" class="table table-bordered table-hover col-md-6">
                                 <thead>
                                     <tr role="row">
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Position</th>
                                         <th>Contact</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,8 +36,11 @@
                                             <td>@Html.DisplayFor(modelItem => item.EmpLName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Position)</td>
                                             <td>@Html.DisplayFor(modelItem => item.EmpContact)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                                            <td> </td>
+                                            <td>
+                                                <a href="/Employee/Details/@Html.DisplayFor(modelItem => item.EmpID)" type="button" class="btn btn-md btn-success"><i class="fa fa-eye"></i></a>
+                                                <a href="/Employee/EditEmployee/@Html.DisplayFor(modelItem => item.EmpID)" type="button" class="btn btn-md btn-success"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a href="/Employee/Delete/@Html.DisplayFor(modelItem => item.EmpID)" type="button" class="btn btn-md btn-success"><i class="fa fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>

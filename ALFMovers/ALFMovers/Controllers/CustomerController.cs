@@ -52,12 +52,13 @@ namespace ALFMovers.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustID,CustName,CustContact,FromAddrss,ToAddrss,IssuedDate,SchedDate")] Customer customer)
+        public ActionResult Create([Bind(Include = "CustID,CustName,CustContact,FromAddrss,ToAddrss,IssuedDate,Status,SchedDate")] Customer customer)
         {
             if (ModelState.IsValid)
             {
                 customer.IssuedDate = DateTime.Now;
                 customer.CustID = 1;
+                customer.Status = "";
                 
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -116,8 +117,26 @@ namespace ALFMovers.Controllers
             },JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Confirmation()
+        {
 
+            return View(db.Customers.ToList());
+        }
 
+        public string Status(int id)
+        {
+            Customer cust = db.Customers.Find(id);
+            if(cust.Status=="Accept"){
+                cust.Status = "Accepted";
+                db.SaveChanges();
+            }
+            else
+            {
+                cust.Status = "Rejected";
+                db.SaveChanges();
+            }
 
+            return "The request has been" + cust.Status;
+        }
     }
 }

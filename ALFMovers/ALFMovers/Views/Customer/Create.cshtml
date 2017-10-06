@@ -25,6 +25,10 @@
     <!-- Custom styles for this template -->
     <link href="~/Content/CPage/css/business-casual.css" rel="stylesheet">
 
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
+
 </head>
 
 <body>
@@ -86,12 +90,12 @@
 
                                             <div class="form-group">
                                                 <label><strong>Scheduled Date</strong></label>
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.SchedDate, new { htmlAttributes = new { @class = "form-control", @id = "sched", placeholder = "Enter Move Date" } })
+                                                <div class="input-group date col-md-12">
+                                                    @Html.EditorFor(model => model.SchedDate, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", placeholder = "Select date of move" } })
                                                     @Html.ValidationMessageFor(model => model.SchedDate, "", new { @class = "text-danger" })
+                                                 <!--   <input type="text" class="form-control pull-right" id="datepicker">-->
                                                 </div>
                                             </div>
-
 
                                             <div class="form-group">
                                                 <div class="pull-right">
@@ -118,3 +122,22 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/myjquery.js"></script>
+<!-- jQuery 3 -->
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="~/Content/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/Content/dist/js/adminlte.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: "yyyy-mm-dd",
+        });
+
+    });
+</script>
