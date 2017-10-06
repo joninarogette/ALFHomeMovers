@@ -13,8 +13,6 @@
     <Property Name="SchedDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Customers" FromRole="Customers" ToRole="Transactions" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CustFeedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="FeedbackDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>

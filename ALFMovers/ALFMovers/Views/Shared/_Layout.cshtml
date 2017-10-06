@@ -82,10 +82,23 @@
                     <li><a href="@Url.Action("Dashboard","Public")"><i class="glyphicon glyphicon-home"></i> <span>Dashboard</span></a></li>
 
                     <!-- sidebar menu: : Accept and reject -->
-                    <li><a href="@Url.Action("Confirmation","Customer")"><i class="glyphiocn glyphicon glyphicon-ok"></i> <span>Service Request</span></a></li>
+                    <li><a href="@Url.Action("Confirmation","Customer")"><i class="glyphiocn glyphicon glyphicon-ok"></i> <span>Service Requests</span></a></li>
 
-                    <!-- sidebar menu: : RESERVATION -->
-                    <li><a href="@Url.Action("List","Customer")"><i class="glyphicon glyphicon-calendar"></i> <span>List of Transactions</span></a></li>
+                    <!-- sidebar menu: : TRANSACTIONS -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-tasks"></i>
+                            <span>Transactions</span>
+                            <span class="pull-right-container">
+                                <span class="label label-primary pull-right"></span>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ForSched","Customer")"><i class="fa fa-calendar"></i>For Schedule</a></li>
+                            <li><a href=""><i class="fa fa-wrench"></i>Pending</a></li>
+                            <li><a href=""><i class="fa fa-check-circle"></i>Finished</a></li>
+                        </ul>
+                    </li>
 
                     <!-- sidebar menu: : EMPLOYEE -->
                     <li class="treeview">

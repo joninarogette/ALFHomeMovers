@@ -19,55 +19,56 @@
 
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-number">Service</span>
-                        <span class="info-box-text">Requests</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                <a href="@Url.Action("Confirmation","Customer")">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-number">Service</span>
+                            <span class="info-box-text">Requests</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div></a>
+                    <!-- /.info-box -->
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-red"><i class="fa fa-wrench"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-number">Service</span>
-                        <span class="info-box-text">Transactions</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
+                <a href="@Url.Action("List","Customer")">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="fa fa-wrench"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-number">Service</span>
+                            <span class="info-box-text">Transactions</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div></a>
+                    <!-- /.info-box -->
+</div>
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-number">ALF</span>
-                        <span class="info-box-text">Employees</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
+                <a href="@Url.Action("Index","Employee")">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-number">ALF</span>
+                            <span class="info-box-text">Employees</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div></a>
+                    <!-- /.info-box -->
+</div>
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-yellow"><i class="fa fa-truck"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-number">ALF</span>
-                        <span class="info-box-text">Trucks</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
+                <a href="@Url.Action("Index","Truck")">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="fa fa-truck"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-number">ALF</span>
+                            <span class="info-box-text">Trucks</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div></a>
+                    <!-- /.info-box -->
+</div>
             <!-- /.col -->
 
             <!-- /.col -->
@@ -78,17 +79,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Activity Log</h3>
-
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        <h3 class="box-title"><strong>Activity Log</strong></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">

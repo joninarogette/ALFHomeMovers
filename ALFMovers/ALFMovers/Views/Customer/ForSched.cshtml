@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ALFMovers.Models.Customer>
 
 @{
-    ViewBag.Title = "Confirmation";
+    ViewBag.Title = "ForSched";
 }
 
 <div class="content-wrapper">
@@ -13,7 +13,7 @@
                 <div class="box box-primary">
                     <div class="box-body">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><strong>Service Requests</strong></h3>
+                            <h3 class="box-title"><strong>Requests to Schedule</strong></h3>
                         </div>
 
                         <table id="emp" class="table table-bordered table-hover">
@@ -34,8 +34,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.CustContact)</td>
                                         <td>@Html.DisplayFor(modelItem => item.SchedDate)</td>
                                         <td>
-                                            <a href="/Customer/Accept/@Html.DisplayFor(modelItem => item.CustID)" type="button" class="btn btn-md btn-success"><i class="fa fa-check"></i></a>
-                                            <a href="/Customer/Reject/@Html.DisplayFor(modelItem => item.CustID)" type="button" class="btn btn-md btn-success"><i class="fa fa-close (alias)"></i></a>
+                                            <a href="/Customer/Details/@Html.DisplayFor(modelItem => item.CustID)" type="button" class="btn btn-md btn-success">View</a>
                                         </td>
                                     </tr>
                                 }

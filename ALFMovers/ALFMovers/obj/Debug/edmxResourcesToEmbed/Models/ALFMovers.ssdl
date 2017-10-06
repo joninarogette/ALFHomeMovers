@@ -12,8 +12,6 @@
     <Property Name="IssuedDate" Type="datetime" />
     <Property Name="SchedDate" Type="date" />
     <Property Name="Status" Type="varchar" MaxLength="50" />
-    <Property Name="CustFeedback" Type="text" />
-    <Property Name="FeedbackDate" Type="date" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>

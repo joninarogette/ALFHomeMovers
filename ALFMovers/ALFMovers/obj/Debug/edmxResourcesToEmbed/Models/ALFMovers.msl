@@ -4,8 +4,6 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="ALFMoversModel.Customer">
         <MappingFragment StoreEntitySet="Customers">
-          <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
-          <ScalarProperty Name="CustFeedback" ColumnName="CustFeedback" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CustID" ColumnName="CustID" />
           <ScalarProperty Name="CustName" ColumnName="CustName" />

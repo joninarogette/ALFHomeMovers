@@ -7661,7 +7661,6 @@
     <Content Include="Views\Truck\Details.cshtml" />
     <Content Include="Views\Truck\Index.cshtml" />
     <Content Include="Views\Public\Dashboard.cshtml" />
-    <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Employee\Sched.cshtml" />
@@ -7670,7 +7669,8 @@
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Confirmation.cshtml" />
-    <Content Include="Views\Customer\ClientFeedback.cshtml" />
+    <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Customer\ForSched.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

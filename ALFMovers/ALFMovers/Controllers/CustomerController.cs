@@ -123,20 +123,32 @@ namespace ALFMovers.Controllers
             return View(db.Customers.ToList());
         }
 
-        public string Status(int id)
+        public string Accept(int id)
         {
             Customer cust = db.Customers.Find(id);
-            if(cust.Status=="Accept"){
-                cust.Status = "Accepted";
-                db.SaveChanges();
-            }
-            else
-            {
-                cust.Status = "Rejected";
-                db.SaveChanges();
-            }
+            cust.Status = "Accepted";
+            db.Entry(cust).State = EntityState.Modified;
+            db.SaveChanges();
+            return "";
+        }
 
-            return "The request has been" + cust.Status;
+        public string Reject(int id)
+        {
+            Customer cust = db.Customers.Find(id);
+            cust.Status = "Rejected";
+            db.Entry(cust).State = EntityState.Modified;
+            db.SaveChanges();
+            return "";
+        }
+
+        public ActionResult ForSched(int? id)
+        {
+            Session["customerID"] = id;
+            Customer c = db.Customers.Find(id);
+            var customerList = db.Customers.SqlQuery("select * from Customers WHERE Status = 'Accepted'").ToList<Customer>();
+
+            return View(customerList);
+
         }
     }
 }
